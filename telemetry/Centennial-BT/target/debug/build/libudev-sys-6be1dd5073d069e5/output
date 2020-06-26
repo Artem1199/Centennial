@@ -1,0 +1,4 @@
+cargo:rustc-link-search=native=/lib/x86_64-linux-gnu
+cargo:rustc-link-lib=udev
+cargo:rustc-cfg=hwdb
+cargo:hwdb=true
