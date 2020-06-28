@@ -1,4 +1,18 @@
-//! Example of using a number of timer channels in PWM mode.
+/* way 1:
+
+Step 1: Input low level to PIN34->EN PIN. (it can also be floating)
+Step 2: Supply power to the module. 
+Step 3: Input high level to the EN PIN(PIN34)(you can press the button this do this action,if you buy HC-05 from DSD TECH) 
+Then the module will enter to AT mode. The baud rate is as same as the communication time, default is  9600
+
+ Connect with cable to 3V!!
+
+ONLY 1 COMMAND AT A TIME.
+
+*/
+
+
+
 //! Target board: STM32F3DISCOVERY
 #![no_std]
 #![no_main]
@@ -26,6 +40,18 @@ use postcard::{
    serialize_with_flavor,
    flavors::{Cobs, Slice},
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 use nb::block;  // used with serial data transfer
 
