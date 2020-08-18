@@ -1,10 +1,10 @@
 # Centennial
 
-##Rust Self Balancing Robot WIP
+## Rust Self Balancing Robot WIP
 
-###Design
+### Design
 ![Design](doc/Robot_Pic_2.PNG)
-###Build
+### Build
 ![Build](doc/build.jpg)
-###Madgwick Sensor
+### Madgwick Sensor
 ![MW](doc/madwick.jpg)
