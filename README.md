@@ -7,4 +7,4 @@
 ### Build
 ![Build](doc/build.jpg)
 ### Madgwick Sensor
-![MW](doc/madwick.jpg)
+![MW](doc/madgwick.jpg)
