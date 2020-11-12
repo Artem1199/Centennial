@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/artem/Desktop/viz/target/debug/build/typenum-8834edc2bf91407d/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/home/artem/Desktop/viz/target/debug/build/typenum-8834edc2bf91407d/out/op.rs
