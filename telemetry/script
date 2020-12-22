@@ -1,0 +1,8 @@
+plot "points.dat" u 1:1 with lines
+
+while (1) {
+
+	replot
+	pause 1
+
+}

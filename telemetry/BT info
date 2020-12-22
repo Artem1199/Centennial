@@ -1,0 +1,10 @@
+MAC: 98:D3:71:FD:C4:5B
+Pairing code: 1234
+
+sudo rfcomm release 0 && sudo rfcomm bind 0 98:D3:71:FD:C4:5B && sudo stty -F /dev/rfcomm0 raw 230400 -echo && itmdump -f /dev/rfcomm0 | /home/artem/Desktop/git/Centennial/telemetry/viz/target/release/viz
+
+sudo rfcomm release 0 && sudo rfcomm bind 0 98:D3:71:FD:C4:5B && sudo stty -F /dev/rfcomm0 raw 230400
+
+VS code is setup the upload the code to the f3.  Will be much more difficult to setup without this.  Don't reinstall OS.
+
+Reuploaded code, and ran with USB connection to robot.  

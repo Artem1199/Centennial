@@ -1,0 +1,74 @@
+[package]
+authors = ["Artem Kulakevich"]
+description = "Rust Self balancing robot"
+name = "centennial"
+version = "0.0.1"
+edition = "2018"
+
+[dependencies]
+cortex-m = "0.6.4"
+cortex-m-rt = "0.6.13"
+cortex-m-rtic = "0.5.5"
+embedded-hal = "0.2"
+nb = "0.1"
+cortex-m-semihosting = "0.3.7"
+#stm32f3 = "0.11"
+#f3 = { git = "https://github.com/tkeksa/f3"}
+#stm32f30x-hal = "0.2.0"
+l3gd20 = "0.3.0"
+lsm303dlhc = "0.2.0"
+#postcard = "0.5.0"
+byteorder = { version = "1", default-features = false }
+panic-halt = "0.2.0"
+aligned = "0.3.2"
+madgwick = "0.1.1"
+dcmimu = "0.2.2"
+nalgebra = { version = "0.18", default-features = false}
+m = "0.1.1"
+mat = "0.2.0"
+micromath = "1.0.1"
+qei = "1.0.2"
+rotary-encoder-hal = "0.2.1"
+pid = "3.0.0"
+panic-semihosting = "0.5.6"
+
+[dependencies.either]
+version = "1.6.1"
+default-features = false
+
+[dependencies.num-traits]
+version = "0.2"
+default-features = false
+features = ["libm"]    # <--- Uncomment if you wish to use `Float` and `Real` without `std`
+
+[dependencies.hal]
+package   = "stm32f3xx-hal"
+version = "0.6.0"
+features = ["stm32f303xc", "rt"]
+
+[dependencies.ahrs]
+version = "0.2.2"
+default-features = false
+
+[dependencies.bare-metal]
+version = "0.2"
+features = ["const-fn"]
+
+[dependencies.cast]
+default-features = false
+version = "0.2"
+
+[dependencies.motor-driver]
+git = "https://github.com/burrbull/motor-driver"
+
+[dependencies.void]
+default-features = false
+version = "1"
+
+[dependencies.stm32-usbd]
+version = "0.5"
+optional = true
+
+[dependencies.cobs]
+default-features = false
+version = "0.1.4"

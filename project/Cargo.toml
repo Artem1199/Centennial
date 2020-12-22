@@ -1,0 +1,124 @@
+[package]
+authors = ["Artem Kulakevich"]
+description = "Rust Self balancing robot"
+name = "centennial"
+version = "0.0.1"
+
+[dependencies]
+cortex-m = "0.6"
+cortex-m-rt = "0.6"
+embedded-hal = "0.2"
+nb = "0.1"
+stm32f3 = "0.11"
+#f3 = { git = "https://github.com/tkeksa/f3"}
+#stm32f30x-hal = "0.2.0"
+stm32f3xx-hal = "0.6.0"
+l3gd20 = "0.3.0"
+lsm303dlhc = "0.2.0"
+#postcard = "0.5.0"
+byteorder = { version = "1", default-features = false }
+panic-halt = "0.2.0"
+aligned = "0.3.2"
+madgwick = "0.1.1"
+dcmimu = "0.2.2"
+nalgebra = { version = "0.18", default-features = false}
+m = "0.1.1"
+mat = "0.2.0"
+micromath = "1.0.1"
+qei = "1.0.2"
+rotary-encoder-hal = "0.2.1"
+pid = "2.1.0"
+
+[dependencies.hal]
+package   = "stm32f3xx-hal"
+version = "0.6.0"
+features = ["stm32f303xc", "rt"]
+
+[dependencies.ahrs]
+version = "0.2.2"
+default-features = false
+
+[dependencies.bare-metal]
+version = "0.2"
+features = ["const-fn"]
+
+[dependencies.cast]
+default-features = false
+version = "0.2"
+
+[dependencies.motor-driver]
+git = "https://github.com/burrbull/motor-driver"
+
+[dependencies.void]
+default-features = false
+version = "1"
+
+[dependencies.stm32-usbd]
+version = "0.5"
+optional = true
+
+[dev-dependencies.cobs]
+default-features = false
+version = "0.1.4"
+
+[dev-dependencies]
+panic-semihosting = "0.5"
+usb-device = "0.2"
+usbd-serial = "0.1"
+
+[features]
+default = ["unproven"]
+device-selected = []
+direct-call-deprecated = []
+rt = ["stm32f3/rt"]
+# Any Changes here should be mirrored in README.md and src/lib.rs
+stm32f301 = ["stm32f3/stm32f301", "direct-call-deprecated"]
+stm32f301xb = ["stm32f301", "device-selected"]
+stm32f301xc = ["stm32f301", "device-selected"]
+stm32f301xd = ["stm32f301", "device-selected"]
+stm32f301xe = ["stm32f301", "device-selected"]
+stm32f318 = ["stm32f3/stm32f3x8", "device-selected"]
+stm32f302 = ["stm32f3/stm32f302", "direct-call-deprecated"]
+stm32f302xb = ["stm32f302", "device-selected"]
+stm32f302xc = ["stm32f302", "device-selected"]
+stm32f302xd = ["stm32f302", "device-selected"]
+stm32f302xe = ["stm32f302", "device-selected"]
+stm32f303 = ["stm32f3/stm32f303", "direct-call-deprecated"]
+stm32f303xb = ["stm32f303", "stm32-usbd/ram_access_1x16", "device-selected"]
+stm32f303xc = ["stm32f303", "stm32-usbd/ram_access_1x16", "device-selected"]
+stm32f303xd = ["stm32f303", "stm32-usbd/ram_access_2x16", "device-selected"]
+stm32f303xe = ["stm32f303", "stm32-usbd/ram_access_2x16", "device-selected"]
+stm32f303x6 = ["stm32f303", "device-selected"]
+stm32f303x8 = ["stm32f303", "device-selected"]
+stm32f373 = ["stm32f3/stm32f373", "device-selected"]
+stm32f378 = ["stm32f3/stm32f3x8", "device-selected"]
+stm32f334 = ["stm32f3/stm32f3x4", "device-selected"]
+stm32f328 = ["stm32f3/stm32f3x8", "device-selected"]
+stm32f358 = ["stm32f3/stm32f3x8", "device-selected"]
+stm32f398 = ["stm32f3/stm32f3x8", "device-selected"]
+unproven = ["embedded-hal/unproven"]
+
+[profile.dev]
+debug = true
+lto = true
+
+[profile.release]
+debug = true
+lto = true
+opt-level = "s"
+
+#[[example]]
+#name = "pwm"
+#required-features = ["stm32f303xc"]
+
+#[[example]]
+#name = "toggle"
+#required-features = ["rt", "stm32f303xc"]
+
+#[[example]]
+#name = "usb_serial"
+#required-features = ["rt", "stm32f303xc", "stm32-usbd"]
+
+#[[example]]
+#name = "spi"
+#required-features = ["stm32f303"]

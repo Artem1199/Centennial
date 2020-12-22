@@ -66,8 +66,8 @@ fn main() {
             )));
 
 
-            let strArr = ["X: ", "Y: ", "X: ", "X Avg: ", "Y Avg: ", "Pitch: "];
-            let valArr = [-q.1, -q.2, q.3, q.4, q.5, q.6];
+            let strArr = ["Acc X: ", "Acc Y: ", "Acc Z: ", "Gyr X: ", "Gyr Y: ", "Gyr Z: "];
+            let valArr = [q.1, q.2, q.3, q.4, q.5, q.6];
             let mut index = 0.;
 
 
@@ -99,41 +99,62 @@ fn parse(sender: &mut Sender<(f32, f32, f32, f32, f32, f32, f32)>) {
             .quote_style(csv::QuoteStyle::NonNumeric)
             .from_writer(io::stdout());
 
+            let mut x_avg = 0.0;
+            let mut y_avg = 0.0;
+            let mut z_avg = 0.0;
+            let mut gx_avg = 0.0;
+            let mut gy_avg = 0.0;
+            let mut gz_avg = 0.0;
+            let mut avg_cnt = 0;   
+
     for mut frame in BufReader::new(stdin.lock()).split(0) {
         let mut frame = frame.unwrap();
         if let Ok(n) = cobs::decode_in_place(&mut frame) {
-            if n == 40 {
+
+            if n == 16 {
                 let mut start = 0;
-                let w = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let x = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let y = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let z = LE::read_f32(&mut frame[start..start + 4]);
-
-                start += 4;
-                let m_x = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let m_y = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let m_z = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-
-                let avg_x = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let avg_y = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-                let pitch = LE::read_f32(&mut frame[start..start + 4]);
-                start += 4;
-
-
-                let _ = wtr.serialize(&[m_x, m_y, m_z]);
+                let q1 = LE::read_f32(&mut frame[start..start + 4]);
+                start += 4;  //4
+                let q2 = LE::read_f32(&mut frame[start..start + 4]);
+                start += 4;  //8
+                let q3 = LE::read_f32(&mut frame[start..start + 4]);
+                start += 4;  //12
+                let q4 = LE::read_f32(&mut frame[start..start + 4]);
+                let _ = wtr.serialize(&[q1, q2, q3, q4]);
                 let _ = wtr.flush();
-
-                assert_eq!(start, n);
-                sender.send((w, x, y, z, avg_x, avg_y, pitch)).unwrap();
             }
+
+            // if n == 40 {
+            //     let mut start = 0;
+            //     let q1 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let q2 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let q3 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let q4 = LE::read_f32(&mut frame[start..start + 4]);
+
+            //     start += 4;
+            //     let q5 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let q6 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let q7 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+
+            //     let q8 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let q9 = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+            //     let qa = LE::read_f32(&mut frame[start..start + 4]);
+            //     start += 4;
+
+
+            //     let _ = wtr.serialize(&[q1, q2, q3, q4, q5, q6, q7, q8, q9, qa]);
+            //     let _ = wtr.flush();
+
+
+           // }
         }
     }
 }
