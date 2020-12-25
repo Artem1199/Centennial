@@ -111,8 +111,10 @@ fn parse(sender: &mut Sender<(f32, f32, f32, f32, f32, f32, f32)>) {
         let mut frame = frame.unwrap();
         if let Ok(n) = cobs::decode_in_place(&mut frame) {
 
+            println!("{:?}", frame);
             if n == 16 {
                 let mut start = 0;
+                println!("2 {:?}", frame);
                 let q1 = LE::read_f32(&mut frame[start..start + 4]);
                 start += 4;  //4
                 let q2 = LE::read_f32(&mut frame[start..start + 4]);
@@ -122,6 +124,7 @@ fn parse(sender: &mut Sender<(f32, f32, f32, f32, f32, f32, f32)>) {
                 let q4 = LE::read_f32(&mut frame[start..start + 4]);
                 let _ = wtr.serialize(&[q1, q2, q3, q4]);
                 let _ = wtr.flush();
+
             }
 
             // if n == 40 {
